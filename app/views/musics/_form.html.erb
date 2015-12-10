@@ -1,0 +1,45 @@
+<%= form_for(@music) do |f| %>
+  <ul>
+  <% @music.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+  <p class="form_liner">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p class="form_liner">
+    <%= f.label :artist, :class => "composers_label" %>
+	<%= f.select(:composer_ids, Composer.all.collect {|c| [c.full_name, c.id]}, {},
+								{:multiple => true,
+								:size => 5}) %>
+  </p>
+  <p class="form_liner">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </p>
+  <p class="form_liner">
+    <%= f.label :release_date%>
+    <%= f.date_select :released,
+						:use_short_month => true,
+						:start_year => 2013,
+						:end_year => Date.today.year + 1,
+						:order => [:month, :day, :year] %>
+  </p>
+  <p class="form_liner">
+    <%= f.label :barcode %>
+    <%= f.text_field :barcode, :maxlength => 13 %>
+  </p>
+  <p class="form_liner">
+    <%= f.label :current_stock %>
+    <%= f.text_field :stock %>
+  </p>
+  <p class="form_liner checkbox_liner">
+    <%= f.check_box :can_order, :class => 'checkbox' %><%= f.label :music_can_be_ordered, "Available for purchase", :id => 'checkbox_label' %><br />
+    <%= f.check_box :digital, :class => 'checkbox' %><%= f.label :digital, "Download available to purchase", :id => 'checkbox_label' %><br />
+    <%= f.check_box :physical, :class => 'checkbox' %><%= f.label :physical, "Physical copy available for purchase", :id => 'checkbox_label' %><br />
+  </p>
+  <p class="form_liner">
+    <%= f.submit(:class => "submit") %>
+  </p>
+<% end %>

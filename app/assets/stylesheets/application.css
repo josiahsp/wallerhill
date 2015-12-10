@@ -13,3 +13,348 @@
  *= require_tree .
  *= require_self
  */
+
+BODY {
+	background-color: #55555f;
+	background-image: url('background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+}
+
+#welcome_nav_wrapper {
+	top: 40%;
+	width: 550px;
+	height: 200px;
+	//background-color: rgba(255,255,0,.4);
+	margin: auto;
+	margin-top: 250px;
+	padding: 0px;
+	text-align: center;
+	line-height: 200px;
+}
+
+#welcome_logo {
+	min-width: 200px;
+	width: 20%;
+	z-index: 10;
+	padding: 0px;
+	margin: 0px;
+}
+
+.nav_element {
+	height: 20px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#202628+0,161a1b+100 */
+		background: #202628; /* Old browsers */
+		background: -moz-linear-gradient(top,  #202628 0%, #161a1b 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  #202628 0%,#161a1b 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  #202628 0%,#161a1b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#202628', endColorstr='#161a1b',GradientType=0 ); /* IE6-9 */
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+	font-size: 1.1em;
+	z-index: 4;
+	margin: 0px;
+	transition: all 1s ease 0s;
+		-o-transition: all 1s ease 0s;
+		-moz-transition: opacity 1s ease 0s;
+		-webkit-transition: all 1s ease 0s;
+}
+
+.nav_element:hover {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2e373a+0,212728+100 */
+		background: #2e373a; /* Old browsers */
+		background: -moz-linear-gradient(top,  #2e373a 0%, #212728 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top,  #2e373a 0%,#212728 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom,  #2e373a 0%,#212728 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e373a', endColorstr='#212728',GradientType=0 ); /* IE6-9 */
+}
+
+#welcome_books {
+	padding-right: 50px;
+	text-align: left;
+	position: relative;
+	right: -4px;
+	bottom: 85px;
+}
+
+#welcome_music {
+	padding-left: 50px;
+	text-align: right;
+	position: relative;
+	left: -4px;
+	bottom: 85px;
+}
+
+#nav_wrapper {
+	top: 20px;
+	width: 400px;
+	height: 100px;
+	//background-color: rgba(255,255,0,.4);
+	margin: auto;
+	padding: 0px;
+	text-align: center;
+}
+
+#nav_logo {
+	width: 100px;
+	z-index: 10;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+#nav_books {
+	padding: 5px;
+	padding-left: 15px;
+	padding-right: 30px;
+	text-align: left;
+	position: relative;
+	right: -4px;
+	bottom: 40px;
+}
+
+#nav_music {
+	padding: 5px;
+	padding-right: 15px;
+	padding-left: 30px;
+	text-align: right;
+	position: relative;
+	left: -4px;
+	bottom: 40px;
+}
+
+#main {
+	background-color: rgba(0,0,0,.7);
+	width: 900px;
+	margin: auto;
+	margin-top: 70px;
+	padding: 20px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 50px;
+}
+
+h2, h3 {
+	font-weight: normal;
+}
+
+.form_liner {
+	width: 100%;
+	text-align: center;
+}
+
+.form_liner label {
+	width: 80px;
+	display: inline-block;
+	text-align: right;
+	padding-right: 5px;
+	text-transform: capitalize;
+}
+
+.checkbox_liner {
+	text-align: left;
+}
+
+#checkbox_label {
+	width: initial;
+	text-transform: none;
+	text-align: left;
+}
+
+.checkbox {
+	width: auto;
+	margin-right: 10px;
+}
+
+input {
+	background-color: rgba(255,255,255,.4);
+	border: none;
+	width: 80%;
+	padding: 10px;
+	font-size: 1.1em;
+	color: white;
+	vertical-align: top;
+}
+
+select {
+	background-color: rgba(255,255,255,.4);
+	border: none;
+	width: 20%;
+	padding: 10px;
+	font-size: 1.1em;
+	color: white;
+}
+
+textarea {
+	background-color: rgba(255,255,255,.4);
+	border: none;
+	width: 80%;
+	height: 200px;
+	padding: 10px;
+	font-size: 1.1em;
+	color: white;
+	vertical-align: top;
+}
+
+.submit {
+	transition: all .5s ease;
+	-webkit-transition: all .5s ease;
+}
+
+.submit:hover {
+	background-color: #232f2d;
+}
+
+a:link, a:hover, a:active, a:visited {
+	color: inherit;
+	text-decoration: none;
+	transition: all .5s ease;
+	-webkit-transition: all .5s ease;
+}
+
+a:hover {
+	color: #dddddd;
+	background-color: rgba(0,0,0,0);
+}
+
+.show_book {
+	height: 270px;
+	width: 180px;
+	vertical-align: top;
+	box-shadow: 10px 10px 20px rgba(0,0,0,.4);
+}
+
+#show_book_details {
+	display: inline-block;
+	padding: 20px;
+	font-size: 1em;
+}
+
+.show_title {
+	display: inline-block;
+	padding: 0px;
+	margin: none;
+}
+
+.composer_photo {
+	height: 200px;
+	width: 200px;
+	vertical-align: top;
+	box-shadow: 10px 10px 20px rgba(0,0,0,.4);
+}
+
+ul {
+	list-style: none;
+}
+
+#index_title {
+	background-color: rgba(0,0,0,.7);
+	width: 80%;
+	margin: auto;
+	margin-top: 70px;
+	padding: 2px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#index_ul {
+	width: 80%;
+	margin: auto;
+	margin-top: 30px;
+	padding: 0px;
+}
+
+#index_ul li{
+	display: inline-block;
+	margin: 30px;
+	margin-bottom: 0px;
+	width: 400px;
+	padding: 20px;
+	background-color: rgba(0,0,0,.7);
+}
+
+#index_ul li h2 {
+	width: 200px;
+}
+
+.index_book {
+	display: inline-block;
+}
+
+.index_book_title {
+	display: inline-block;
+	font-size: 1.2em;
+	font-weight: 700;
+	width: 200px;
+}
+
+.index_book_details {
+	display: inline-block;
+	width: 210px;
+	vertical-align: top;
+}
+
+#show_book_description {
+	width: 800px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.composer_show_book {
+	display: inline-block;
+	height: 180px;
+	width: 120px;
+	vertical-align: top;
+	box-shadow: 10px 10px 20px rgba(0,0,0,.4);
+}
+
+.composer_books {
+	display: inline-block;
+	width: 150px;
+	text-align: center;
+}
+
+.composers_label {
+	vertical-align: top;
+}
+
+#show_music_description {
+	width: 800px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.show_music {
+	height: 185px;
+	width: 185px;
+	vertical-align: top;
+	box-shadow: 10px 10px 20px rgba(0,0,0,.4);
+}
+
+#show_music_details {
+	display: inline-block;
+	padding: 20px;
+	font-size: 1em;
+}
+
+.index_music_details {
+	display: inline-block;
+	width: 210px;
+	vertical-align: top;
+}
+
+.index_music {
+	display: inline-block;
+}
+
+.composer_show_music {
+	display: inline-block;
+	height: 120px;
+	width: 120px;
+	vertical-align: top;
+	box-shadow: 10px 10px 20px rgba(0,0,0,.4);
+}

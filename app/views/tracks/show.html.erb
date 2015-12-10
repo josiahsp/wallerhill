@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @track.title %>
+</p>
+
+<p>
+  <strong>Length:</strong>
+  <%= @track.length %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @track.artist %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @track.number %>
+</p>
+
+<p>
+  <strong>Isrc:</strong>
+  <%= @track.isrc %>
+</p>
+
+<p>
+  <strong>Music:</strong>
+  <%= @track.music %>
+</p>
+
+<p>
+  <strong>Ccli:</strong>
+  <%= @track.ccli %>
+</p>
+
+<p>
+  <strong>Authors:</strong>
+  <%= @track.authors %>
+</p>
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

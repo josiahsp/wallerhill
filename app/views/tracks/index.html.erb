@@ -1,0 +1,16 @@
+<%= render "layouts/nav" %>
+
+<div id="index_title">
+	<h2>Tracks</h2>
+</div>
+
+<div id="main">
+	<ul id="index_ul">
+		<% @tracks.each do |track| %>
+			<li>
+				<%= track.title %> - <%= track.music.title %> - <%= track.music.composers.map {|c| c.full_name}.join(", ") %> <%= link_to "Edit", edit_track_path(track) %> 
+			</li>
+		<% end %>
+	</ul>
+	<%= link_to "New", new_track_path %>
+</div>

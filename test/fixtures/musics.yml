@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  fname: MyString
+  lname: MyString
+  bio: MyText
+  city: MyString
+  state: MyString
+  digital: false
+  physical: false
+  itunes: MyString
+
+two:
+  title: MyString
+  fname: MyString
+  lname: MyString
+  bio: MyText
+  city: MyString
+  state: MyString
+  digital: false
+  physical: false
+  itunes: MyString

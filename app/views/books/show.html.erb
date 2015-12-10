@@ -1,0 +1,20 @@
+<%= render "layouts/nav" %>
+
+<div id="main">
+	<%= image_tag("", :class => 'show_book') %>
+	<div id="show_book_details">
+		<h2 class="show_title"><%= @book.title %></h2><br />
+		Author: <i><%= raw(@book.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />
+		Publishing Date: <%= @book.pubdate.strftime("%b %d, %Y") %><br />
+		ISBN: <%= @book.isbn %>
+		<% if @book.can_order == true %>
+			<br />
+			<%= stock_check(@book) %>
+			<br /><br />
+		<% end %>
+	</div>
+	<div id="show_book_description">
+		<%= raw @book.description %>
+	</div>
+	
+</div>

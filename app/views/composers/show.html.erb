@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<%= render "layouts/nav" %>
+
+<div id="main">
+	<%= image_tag("", :class => 'composer_photo') %>
+	<div id="show_details">
+		<h2 class="show_title"><%= @composer.full_name %></h2><br />
+		Location: <i><%= @composer.city %>, <%= @composer.state %></i><br /><br />
+		<%= @composer.bio %>
+	</div>
+	<h3>Works by <%= @composer.full_name %>:</h3><br />
+	<% @composer.products.each do |product| %>
+		<div class="composer_books">
+			<% if product.is_a?(Book) %>
+				<%= link_to book_path(product) do %>
+					<%= image_tag("", :alt => product.title, :class => "composer_show_book") %><br />
+					<%= product.title %>
+				<% end %>
+			<% elsif product.is_a?(Music) %>
+				<%= link_to music_path(product) do %>
+					<%= image_tag("", :alt => product.title, :class => "composer_show_music") %><br />
+					<%= product.title %>
+				<% end %>
+			<% end %>
+			
+		</div>
+	<% end %>
+</div>
