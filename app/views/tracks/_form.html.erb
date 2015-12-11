@@ -13,8 +13,20 @@
 	<%= f.select(:music_id, Music.all.collect {|m| [m.title, m.id]}, {:include_blank => true})%>
   </p>
   <p class="form_liner">
-    <%= f.label :length %>
-    <%= f.text_field :length %>
+    <%= f.label :duration_in_seconds %>
+    <%= f.text_field :length, :style => 'width: 60px;' %>
+    
+	<% if false %>
+	<%= f.text_field :hours, :value => @track.time_duration("h"), :placeholder => "hh", :class => 'duration_fields' %>:
+    <%= f.text_field :minutes, :value => @track.time_duration("m"),
+								:placeholder => "mm",
+								:class => 'duration_fields',
+								:maxlength => 2 %>:
+    <%= f.text_field :seconds, :value => @track.time_duration("s"),
+								:placeholder => "ss",
+								:class => 'duration_fields',
+								:maxlength => 2 %>
+	<% end %>
   </p>
   <p class="form_liner">
     <%= f.label :song_artist%>

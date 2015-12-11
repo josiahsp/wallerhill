@@ -29,7 +29,7 @@
   </p>
   <p class="form_liner">
     <%= f.label :state %>
-    <%= f.select :state, options_for_select(us_states) %>
+    <%= f.select :state, options_for_select(us_states, @composer.state) %>
   </p>
   <p class="form_liner">
     <%= f.submit %>

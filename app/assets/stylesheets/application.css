@@ -358,3 +358,59 @@ ul {
 	vertical-align: top;
 	box-shadow: 10px 10px 20px rgba(0,0,0,.4);
 }
+
+.red_button {
+	background-color: rgba(255,0,0,.4);
+	width: 720px;
+	position: relative;
+	left: 90px;
+	transition: all 1s;
+	-webkit-transition: all 1s;
+}
+
+.red_button:hover {
+	background-color: rgba(255,0,0,.9);
+}
+
+.admin_ul {
+	display: inline-block;
+}
+
+#admin_wrapper {
+	max-width: 900px;
+	margin: auto;
+}
+
+.admin_block{
+	display: inline-block;
+	margin: 10px;
+	min-width: 200px;
+	padding: 20px;
+	background-color: rgba(0,0,0,.7);
+	margin-bottom: 0px;
+	margin-top: 0px;
+	vertical-align: top;
+}
+
+.admin_block h2 {
+	margin-top: 0px;
+}
+
+.admin_block .by_composer {
+	opacity: .7;
+}
+
+.admin_track {
+	opacity: .7;
+	transition: all 1s;
+	-webkit-transition: all 1s;
+}
+
+.admin_track:hover {
+	opacity: 1;
+	color: white;
+}
+
+.duration_fields {
+	width: 30px;
+}

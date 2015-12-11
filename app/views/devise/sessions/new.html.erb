@@ -1,0 +1,30 @@
+<%= render "layouts/nav" %>
+
+<div id="main">
+	<h2>Log in</h2>
+
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	  <p class="form_liner">
+	    <%= f.label :email %>
+	    <%= f.email_field :email, autofocus: true %>
+	  </p>
+
+	  <p class="form_liner">
+	    <%= f.label :password %>
+	    <%= f.password_field :password, autocomplete: "off" %>
+	  </p>
+
+	  <% if devise_mapping.rememberable? -%>
+	    <p class="form_liner checkbox_liner">
+	      <%= f.label :remember_me, :style => 'width: 100px;' %>
+	      <%= f.check_box :remember_me, :style => 'display: inline-block;' %>
+	    </p>
+	  <% end -%>
+
+	  <div class="actions">
+	    <%= f.submit "Log in" %>
+	  </div>
+	<% end %>
+
+	<%= render "devise/shared/links" %>
+</div>

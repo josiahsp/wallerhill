@@ -1,0 +1,84 @@
+<%= render "layouts/nav" %>
+
+<div id="index_title">
+	<h2 style="display: inline-block; margin-bottom: 0px;">Admin</h2><br />
+	<i>Logged in as <%= current_user.email %><br /><%= link_to "Edit Account", user_registration_path(current_user) %> &nbsp;| &nbsp;<%= link_to "Logout", destroy_user_session_path, :method => :delete %></i>
+</div>
+<div id="admin_wrapper">
+
+	<!-------------- Authors/Artists -------------!>
+	<ul class="admin_ul">
+		<li>
+			<div class="admin_block">
+				<h2>Authors/Artists</h2>
+				<ul class="admin_list">
+					<% @composers.each do |composer| %>
+						<li>
+							<%= link_to edit_composer_path(composer) do %>
+								<%= composer.full_name %>						<% end %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</li>
+	</ul>
+
+
+	<!-------------- Books -------------!>
+	<ul class="admin_ul">
+		<li>
+			<div class="admin_block">
+				<h2>Books</h2>
+				<ul class="admin_list">
+					<% @books.each do |book| %>
+						<li>
+							<%= link_to edit_book_path(book) do %>
+								<%= book.title %> <span class="by_composer">by <%= book.composers.each.map{|c| c.full_name}.join(", ") %></span>
+							<% end %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</li>
+	</ul>
+	
+	<!-------------- Music -------------!>
+		<ul class="admin_ul">
+			<li>
+				<div class="admin_block">
+					<h2>Music</h2>
+					<ul class="admin_list">
+						<% @music.each do |music| %>
+							<li>
+								<%= link_to edit_music_path(music) do %>
+									<%= music.title %>								<% end %>
+								<ul>
+									<% music.tracks.order(:number).each do |track| %>
+										<%= link_to track.title, edit_track_path(track), :class => "admin_track" %><br />
+									<% end %>
+								</ul>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			</li>
+		</ul>
+
+		<!-------------- Admin -------------!>
+			<ul class="admin_ul">
+				<li>
+					<div class="admin_block">
+						<h2>Admin <span style="font-size: .7em;">(<%= @users.count %>)</span></h2>
+						<ul class="admin_list">
+							<% @users.each do |user| %>
+								<li>
+									<%= user.email %>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				</li>
+			</ul>
+
+
+</div>

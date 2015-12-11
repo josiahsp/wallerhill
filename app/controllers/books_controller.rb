@@ -2,6 +2,8 @@ class BooksController < ApplicationController
 
 	include BooksHelper
 
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
 	def index
 		@books = Book.all.order(:pubdate)
 	end

@@ -1,5 +1,6 @@
 class ComposersController < ApplicationController
   before_action :set_composer, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /composers
   # GET /composers.json
