@@ -56,5 +56,10 @@ module ApplicationHelper
 	      ['Wyoming', 'WY']
 	    ]
 	end
+	
+	def usd(cents)
+		dollars = cents.to_f / 100
+		return "$" + number_with_precision(dollars, :precision => 2).to_s
+	end
 
 end

@@ -34,6 +34,10 @@
     <%= f.label :current_stock %>
     <%= f.text_field :stock %>
   </p>
+  <p class="form_liner">
+    <%= f.label :price, "Sell Price (in cents)" %>
+    <%= f.text_field :price, :placeholder => "1499" %>
+  </p>
   <p class="form_liner checkbox_liner">
     <%= f.check_box :can_order, :class => 'checkbox' %><%= f.label :music_can_be_ordered, "Available for purchase", :id => 'checkbox_label' %><br />
     <%= f.check_box :digital, :class => 'checkbox' %><%= f.label :digital, "Download available to purchase", :id => 'checkbox_label' %><br />

@@ -38,18 +38,14 @@ class TracksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tracks/1
-  # PATCH/PUT /tracks/1.json
   def update
-    respond_to do |format|
       if @track.update(track_params)
-        format.html { redirect_to admin_path, notice: 'Track was successfully updated.' }
-        format.json { render :show, status: :ok, location: @track }
-      else
-        format.html { render :edit }
-        format.json { render json: @track.errors, status: :unprocessable_entity }
-      end
-    end
+		flash[:success] = "Track updated"
+        redirect_to admintracks_url(id: @track.music.id), notice: 'Track was successfully updated.'
+	  else
+		flash[:error] = @track.errors
+		render :edit
+	  end
   end
 
   # DELETE /tracks/1
@@ -70,6 +66,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:title, :length, :artist, :number, :isrc, :music_id, :ccli, :authors)
+      params.require(:track).permit(:title, :length, :artist, :number, :isrc, :music_id, :ccli, :authors, :price)
     end
 end

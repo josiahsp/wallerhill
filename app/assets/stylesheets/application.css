@@ -261,6 +261,11 @@ ul {
 	padding-right: 50px;
 }
 
+#index_title td:nth-child(2) {
+	text-align: right;
+	font-size: 1.5em;
+}
+
 #index_ul {
 	width: 80%;
 	margin: auto;
@@ -376,6 +381,17 @@ ul {
 	display: inline-block;
 }
 
+.admin_main {
+	background-color: rgba(0,0,0,.7);
+	width: 900px;
+	margin: auto;
+	margin-top: 20px;
+	padding: 20px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 50px;
+}
+
 #admin_wrapper {
 	max-width: 900px;
 	margin: auto;
@@ -400,6 +416,18 @@ ul {
 	opacity: .7;
 }
 
+.admin_list li {
+	margin-bottom: 10px;
+}
+
+.admin_list li ul {
+	margin-top: 10px;
+}
+
+.admin_list li ul li {
+	margin-bottom: 5px;
+}
+
 .admin_track {
 	opacity: .7;
 	transition: all 1s;
@@ -413,4 +441,61 @@ ul {
 
 .duration_fields {
 	width: 30px;
+}
+
+.admin_item_div {
+	display: inline-block;
+	vertical-align: middle;
+	background-color: rgba(255,255,255,.3);
+	line-height: 17px;
+	padding: 10px;
+	margin-right: 2px;
+	color: black;
+}
+
+.admin_item_title {
+	font-size: 1.2em;
+	color: white;
+}
+
+.admin_edit_div {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.admin_edit_button, .admin_show_button, .admin_toggle_button {
+	display: inline;
+	width: initial;
+	vertical-align: top;
+	transition: all .75s;
+	-webkit-transition: all .75s;
+	color: black;
+}
+
+.admin_show_button:hover {
+	background-color: rgba(0,170,0,1);
+}
+
+.admin_edit_button:hover {
+	background-color: rgba(170,0,0,1);
+}
+
+.admin_toggle_button:hover {
+	background-color: rgba(0,170,170,1);
+}
+
+.admin_album_tracks {
+	margin-top: 10px;
+}
+
+.admin_album_tracks li {
+	margin-bottom: 5px;
+}
+
+.show_add_cart_button {
+	
+}
+
+.index_add_cart_button {
+	
 }

@@ -5,7 +5,14 @@ class ComposersController < ApplicationController
   # GET /composers
   # GET /composers.json
   def index
-    @composers = Composer.all
+	@view = params[:view]
+	if @view == "authors"
+		@composers = Composer.joins(:books).uniq.all.order(:lname)
+	elsif @view == "artists"
+		@composers = Composer.joins(:musics).uniq.all.order(:lname)
+	else
+	    @composers = Composer.all
+	end
   end
 
   # GET /composers/1

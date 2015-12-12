@@ -1,8 +1,12 @@
 <%= render "layouts/nav" %>
 
-<div id="index_title">
+<table id="index_title">
+	<tr><td>
 	<h2>Music</h2>
-</div>
+	</td><td>
+	<%= link_to "Artists", {:controller => "composers", :action => "index", :view => "artists"} %>
+	</td></tr>
+</table>
 
 	<ul id="index_ul">
 		<% @musics.each do |music| %>
@@ -14,9 +18,7 @@
 						<div class="index_music_title"><%= music.title %></div>
 							Author: <i><%= raw(music.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />
 							Release Date: <%= music.released.strftime("%b %d, %Y") %><br />
-							Barcode: <%= music.barcode %><br />
-							<%= link_to "Edit", edit_music_path(music) %><br />
-							<%= link_to "Delete", music_path(music), method: :delete, data: {confirm: "Really delete this music? This action cannot be undone"} %>
+							Price: <%= usd(music.price) %><br />
 						</div>
 					</div>
 				<% end %>

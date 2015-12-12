@@ -20,7 +20,7 @@ class BooksController < ApplicationController
 		@book = Book.new(book_params)
 		if @book.save
 			flash[:success] = 'Book successfully added'
-			redirect_to books_path
+			redirect_to admin_path
 		else
 			flash[:error] = @book.errors
 			render :new
@@ -36,7 +36,7 @@ class BooksController < ApplicationController
 		
 		if @book.update(book_params)
 			flash[:success] = "Book updated"
-			redirect_to books_path
+			redirect_to admin_path
 		else
 			flash[:error] = @book.errors
 			render :edit
@@ -47,7 +47,7 @@ class BooksController < ApplicationController
 		@book = Book.find(params[:id])
 		@book.destroy
 		
-		redirect_to books_path
+		redirect_to admin_path
 	end
 	
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210193044) do
+ActiveRecord::Schema.define(version: 20151212144224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20151210193044) do
     t.string   "isbn"
     t.integer  "stock"
     t.boolean  "can_order"
+    t.integer  "price"
   end
 
   create_table "composers", force: :cascade do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151210193044) do
     t.string   "barcode"
     t.integer  "stock"
     t.boolean  "can_order"
+    t.integer  "price"
   end
 
   create_table "musics_composers", id: false, force: :cascade do |t|
@@ -72,6 +74,7 @@ ActiveRecord::Schema.define(version: 20151210193044) do
     t.string   "authors"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "price"
   end
 
   create_table "users", force: :cascade do |t|

@@ -3,4 +3,5 @@
 <div id="main">
 	<h2>Edit <%= @book.title %></h2>
 	<%= render "form" %>
+		<%= button_to "Delete Book", book_path(@book), method: :delete, data: {confirm: "Really delete this book? This action cannot be undone"}, :class => "red_button" %>
 </div>

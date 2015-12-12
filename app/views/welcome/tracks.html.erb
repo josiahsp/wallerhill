@@ -1,0 +1,35 @@
+<%= render "layouts/nav" %>
+
+<div id="index_title">
+	<h2 style="display: inline-block; margin-bottom: 0px;">Admin</h2><br />
+	<i>Logged in as <%= current_user.email %><br /><%= link_to "Edit Account", user_registration_path(current_user) %> &nbsp;| &nbsp;<%= link_to "Logout", destroy_user_session_path, :method => :delete %></i>
+</div>
+
+		<!-------------- Music -------------!>
+			<div class="admin_main">
+				<h2><%= @music.title %></h2>
+				<%= link_to "Add Track", new_track_path %>
+				<ul class="admin_album_tracks">
+					<% @tracks.each do |track| %>
+						<li>
+							<div class="admin_item_div">
+								<%= track.number %> / <%= @music.tracks.count %>
+							</div>
+							<div class="admin_item_div admin_item_title">
+								<%= track.title %>
+							</div>
+							<div class="admin_item_div">
+								<%= seconds_to_time(track.length) %>
+							</div>
+							<% if track.ccli %>
+								<div class="admin_item_div">
+									<%= track.ccli %>
+								</div>
+							<% end %>
+							<div class="admin_edit_div">
+								<%= button_to "Edit", edit_track_path(track), :class => "admin_edit_button", method: :get %>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+			</div>
