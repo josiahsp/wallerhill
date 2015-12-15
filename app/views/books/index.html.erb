@@ -12,7 +12,7 @@
 			<li>
 				<div class="index_book">
 				<%= link_to book_path(book) do %>
-					<%= image_tag("", :class => 'show_book') %>
+					<%= image_tag book.cover.url(:medium), :class => 'show_book' %>
 					<div class="index_book_details">
 						<div class="index_book_title"><%= book.title %></div>
 							Author: <i><%= raw(book.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />

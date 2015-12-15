@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214042727) do
+ActiveRecord::Schema.define(version: 20151215030209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "title"
     t.text     "description"
     t.date     "pubdate"
@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(version: 20151214042727) do
     t.integer  "stock"
     t.boolean  "can_order"
     t.integer  "price"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -52,8 +56,12 @@ ActiveRecord::Schema.define(version: 20151214042727) do
     t.text     "bio"
     t.string   "city"
     t.string   "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "composers_books", id: false, force: :cascade do |t|
@@ -66,14 +74,18 @@ ActiveRecord::Schema.define(version: 20151214042727) do
     t.boolean  "digital"
     t.boolean  "physical"
     t.string   "itunes"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.date     "released"
     t.text     "description"
     t.string   "barcode"
     t.integer  "stock"
     t.boolean  "can_order"
     t.integer  "price"
+    t.string   "artwork_file_name"
+    t.string   "artwork_content_type"
+    t.integer  "artwork_file_size"
+    t.datetime "artwork_updated_at"
   end
 
   create_table "musics_composers", id: false, force: :cascade do |t|

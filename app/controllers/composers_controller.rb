@@ -77,6 +77,6 @@ class ComposersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def composer_params
-      params.require(:composer).permit(:fname, :lname, :bio, :city, :state)
+      params.require(:composer).permit(:fname, :lname, :bio, :city, :state, :photo)
     end
 end

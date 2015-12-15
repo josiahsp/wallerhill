@@ -3,7 +3,7 @@
 <%= render "layouts/nav" %>
 
 <div id="main">
-	<%= image_tag("", :class => 'composer_photo') %>
+	<%= image_tag @composer.photo.url(:medium), :class => 'composer_photo' %>
 	<div id="show_details">
 		<h2 class="show_title"><%= @composer.full_name %></h2><br />
 		Location: <i><%= @composer.city %>, <%= @composer.state %></i><br /><br />
@@ -14,12 +14,12 @@
 		<div class="composer_books">
 			<% if product.is_a?(Book) %>
 				<%= link_to book_path(product) do %>
-					<%= image_tag("", :alt => product.title, :class => "composer_show_book") %><br />
+					<%= image_tag(product.cover.url(:thumb), :alt => product.title, :class => "composer_show_book") %><br />
 					<%= product.title %>
 				<% end %>
 			<% elsif product.is_a?(Music) %>
 				<%= link_to music_path(product) do %>
-					<%= image_tag("", :alt => product.title, :class => "composer_show_music") %><br />
+					<%= image_tag(product.artwork.url(:thumb), :alt => product.title, :class => "composer_show_music") %><br />
 					<%= product.title %>
 				<% end %>
 			<% end %>

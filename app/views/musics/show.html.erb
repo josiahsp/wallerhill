@@ -1,7 +1,7 @@
 <%= render "layouts/nav" %>
 
 <div id="main">
-	<%= image_tag("", :class => 'show_music') %>
+	<%= image_tag @music.artwork.url(:medium), :class => 'show_music' %>
 	<div id="show_music_details">
 		<h2 class="show_title"><%= @music.title %></h2><br />
 		Artist: <i><%= raw(@music.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />

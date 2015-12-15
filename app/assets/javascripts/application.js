@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// Replace source
+$('img').error(function(){
+        $(this).attr('src', 'missing.jpg');
+});

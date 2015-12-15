@@ -13,7 +13,7 @@
 			<li>
 				<div class="index_music">
 				<%= link_to music_path(music) do %>
-					<%= image_tag("", :class => 'show_music') %>
+					<%= image_tag music.artwork.url(:medium), :class => 'show_music' %>
 					<div class="index_music_details">
 						<div class="index_music_title"><%= music.title %></div>
 							Author: <i><%= raw(music.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />

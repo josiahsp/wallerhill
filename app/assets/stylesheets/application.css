@@ -378,7 +378,7 @@ ul {
 }
 
 .show_music {
-	height: 185px;
+	height: 166px;
 	width: 185px;
 	vertical-align: top;
 	box-shadow: 10px 10px 20px rgba(0,0,0,.4);
@@ -402,7 +402,7 @@ ul {
 
 .composer_show_music {
 	display: inline-block;
-	height: 120px;
+	height: 108px;
 	width: 120px;
 	vertical-align: top;
 	box-shadow: 10px 10px 20px rgba(0,0,0,.4);

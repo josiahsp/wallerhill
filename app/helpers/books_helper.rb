@@ -1,7 +1,7 @@
 module BooksHelper
 
 	def book_params
-		params.require(:book).permit(:title, :description, :isbn, :pubdate, :stock, :can_order, :price, :composer_ids => [])
+		params.require(:book).permit(:title, :description, :isbn, :pubdate, :stock, :can_order, :price, :cover, :composer_ids => [])
 	end
 	
 	def stock_check(product)

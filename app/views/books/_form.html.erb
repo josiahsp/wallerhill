@@ -14,6 +14,12 @@
 								{:multiple => true,
 								:size => 5}) %>
   </p>
+
+  <p class="form_liner">
+	<%= f.label :cover %>
+    <%= f.file_field :cover %>
+  </p>
+
   <p class="form_liner">
     <%= f.label :description %>
     <%= f.text_area :description %>

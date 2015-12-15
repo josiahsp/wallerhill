@@ -14,10 +14,17 @@
 								{:multiple => true,
 								:size => 5}) %>
   </p>
+
+  <p class="form_liner">
+	<%= f.label :artwork %>
+    <%= f.file_field :artwork %>
+  </p>
+
   <p class="form_liner">
     <%= f.label :description %>
     <%= f.text_area :description %>
   </p>
+
   <p class="form_liner">
     <%= f.label :release_date%>
     <%= f.date_select :released,
