@@ -6,11 +6,9 @@
 		<h2 class="show_title"><%= @book.title %></h2><br />
 		Author: <i><%= raw(@book.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />
 		Publishing Date: <%= @book.pubdate.strftime("%b %d, %Y") %><br />
-		ISBN: <%= @book.isbn %>
 		<% if @book.can_order == true %>
-			<br />
-			<%= stock_check(@book) %>
 			<br /><br />
+			<%= button_to "Add To Cart", add_to_cart_path(item: {:product_id => @book.isbn, :quantity => 1, :cart_id => @cart.id}) %>
 		<% end %>
 	</div>
 	<div id="show_book_description">

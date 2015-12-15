@@ -17,7 +17,8 @@
 						<div class="index_book_title"><%= book.title %></div>
 							Author: <i><%= raw(book.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />
 							Publishing Date: <%= book.pubdate.strftime("%b %d, %Y") %><br />
-							Price: <%= usd(book.price) %><br />
+							Price: <%= usd(book.price) %><br /><br />
+							<%= button_to "Add To Cart", add_to_cart_path(item: {:product_id => book.isbn, :quantity => 1, :cart_id => @cart.id}) %>
 						</div>
 					</div>
 				<% end %>

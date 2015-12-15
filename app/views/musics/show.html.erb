@@ -6,19 +6,17 @@
 		<h2 class="show_title"><%= @music.title %></h2><br />
 		Artist: <i><%= raw(@music.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />
 		Release Date: <%= @music.released.strftime("%b %d, %Y") %><br />
-		Barcode: <%= @music.barcode %><br /><br />
-		Tracks:<br />
-		<% @music.tracks.order(:number).each do |t| %>
-			<%= t.number %>. <%= t.title %><br />
-		<% end %>
-		<% if @music.can_order == true %>
-			<br />
-			<%= stock_check(@music) %>
+		<% if @music.can_order == true && @music.physical == true %>
 			<br /><br />
+			<%= button_to "Add To Cart", add_to_cart_path(item: {:product_id => @music.barcode, :quantity => 1, :cart_id => @cart.id}) %>
 		<% end %>
 	</div>
 	<div id="show_music_description">
-		<%= raw @music.description %>
+		<%= raw @music.description %><br /><br />
+		Tracks:<br />
+			<% @music.tracks.order(:number).each do |t| %>
+				<%= t.number %>. <%= t.title %><br />
+			<% end %>
 	</div>
 	
 </div>

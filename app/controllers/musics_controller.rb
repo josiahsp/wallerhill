@@ -44,7 +44,7 @@ class MusicsController < ApplicationController
   def update
     respond_to do |format|
       if @music.update(music_params)
-        format.html { redirect_to @music, notice: 'Music was successfully updated.' }
+        format.html { redirect_to admin_path, notice: 'Music was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -59,6 +59,7 @@ class MusicsController < ApplicationController
       format.html { redirect_to musics_url, notice: 'Music was successfully destroyed.' }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

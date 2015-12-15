@@ -3,4 +3,5 @@
 <div id="main">
 	<h2>Edit <%= @composer.full_name %></h2>
 	<%= render "form" %>
+	<%= button_to "Delete Book", composer_path(@composer), method: :delete, data: {confirm: "Really delete this artist/author? This action cannot be undone"}, :class => "red_button" %>
 </div>

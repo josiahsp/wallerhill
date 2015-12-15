@@ -19,6 +19,8 @@
 							Author: <i><%= raw(music.composers.map{|c| link_to c.full_name, composer_path(c)}.join(', ')) %></i><br />
 							Release Date: <%= music.released.strftime("%b %d, %Y") %><br />
 							Price: <%= usd(music.price) %><br />
+							<br />
+							<%= button_to "Add To Cart", add_to_cart_path(item: {:product_id => music.barcode, :quantity => 1, :cart_id => @cart.id}) %>
 						</div>
 					</div>
 				<% end %>

@@ -58,7 +58,11 @@ module ApplicationHelper
 	end
 	
 	def usd(cents)
-		dollars = cents.to_f / 100
+		if cents.is_a?(Float) == 0
+			cents = cents.to_f
+		end
+			dollars = (cents / 100) rescue 0
+			
 		return "$" + number_with_precision(dollars, :precision => 2).to_s
 	end
 

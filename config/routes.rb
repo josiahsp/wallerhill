@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :musics, :composers, :music, :welcome, :charges, :tracks, :books
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  resources :musics, :composers, :music, :welcome, :charges, :tracks, :books, :cart, :cart_items
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 	get 'admin' => 'welcome#admin'
 	get 'admin/music/:id/tracks' => 'welcome#tracks', as: :admintracks
+	
+	get 'cart_items' => 'cartitem#create', as: :add_to_cart
+	get 'update_cart_item' => 'cartitem#update', as: :update_cart_item
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

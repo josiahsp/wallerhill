@@ -1,11 +1,12 @@
 class ChargesController < ApplicationController
 
+	include ChargesHelper
+
 	def new
+		@items = CartItem.where(:cart_id => @cart.id).order(:created_at)
 	end
 
 	def create
-	  # Amount in cents
-	  @amount = 500
 
 	  customer = Stripe::Customer.create(
 	    :email => params[:stripeEmail],
@@ -14,8 +15,8 @@ class ChargesController < ApplicationController
 
 	  charge = Stripe::Charge.create(
 	    :customer    => customer.id,
-	    :amount      => @amount,
-	    :description => '$5 Purchase from WHP',
+	    :amount      => @final,
+	    :description => 'Waller Hill Publishing',
 	    :currency    => 'usd'
 	  )
 

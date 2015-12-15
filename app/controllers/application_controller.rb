@@ -4,4 +4,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include ApplicationHelper
+
+	before_action :cart
+
+	def cart 
+	    @cart = Cart.find(session[:cart_id])
+	    rescue ActiveRecord::RecordNotFound
+	         @cart = Cart.create
+	         session[:cart_id] = @cart.id
+	end
+
+	private
+	
+		def verify_admin!
+			if current_user.admin
+				return
+			else
+				flash[:alert] = 'You do not have administrative access. If you believe this is in error, please contact a web administrator.'
+				redirect_to root_path
+			end
+		end
+	
+	
+
 end

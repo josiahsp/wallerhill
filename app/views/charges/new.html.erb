@@ -1,23 +1,85 @@
 <%= render "layouts/nav" %>
 
 <div id="main">
-	<h2>Checkout</h2>
-	<%= form_tag charges_path do %>
-	  <article>
+	<h2>Cart</h2>
+
 	    <% if flash[:error].present? %>
 	      <div id="error_explanation">
 	        <p><%= flash[:error] %></p>
 	      </div>
 	    <% end %>
-	    <label class="amount">
-	      <span>Amount: $5.00</span>
-	    </label>
-	  </article>
+	
+		<table id="checkout_products">
+			<tr>
+				<th>Item</th>
+				<th>Price Per Unit</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+			<% @items.each do |item| %>
+				<tr>
+					<% identify_product(item.product_id) %>
+					<td class="title_col">&nbsp;&nbsp;<%= @product.title + " by " + @product.composers.map {|c| c.full_name}.join(", ") %></td>
+					<td><%= usd(@product.price) %></td>
+					<%= form_for(item) do %>
+					<td><%= text_field_tag :quantity, item.quantity, :autocomplete => "off", :style => "background-color: inherit; text-align: center;" %></td>
+					<td><%= usd(item.quantity.to_int * @product.price.to_int) %></td>
+					<td><%= button_to "Update", update_cart_item_path(item), :class => "cart_item_button update_cart_item" %></td>
+					<% end %>
+					<td><%= button_to "Remove", cart_item_path(item), method: :delete, :class => "cart_item_button remove_cart_item" %></td>
+				</tr>
+			<% end %>
+			<% carttotal(@cart) %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title">Cart Total</td>
+				<td><%= usd(@carttotal) %></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title cart_sub_title">Tax</td>
+				<td class="cart_sub_title"><%= usd(@tax) %></td>
+				<td></td>
+				<td></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title">Subtotal</td>
+				<td><%= usd(@subtotal) %></td>
+				<td></td>
+				<td></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title cart_sub_title">Shipping</td>
+				<td class="cart_sub_title"><%= usd(@shipping) %></td>
+				<td></td>
+				<td></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title">Total</td>
+				<td><%= usd(@final) %></td>
+				<td></td>
+				<td></td>
+			</tr>	
+		</table>
+
+	
+	<%= form_tag charges_path do %>
 
 	  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 	          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-	          data-description="A month's subscription"
-	          data-amount="500"
+	          data-description="Waller-Hill Publishing"
+	          data-amount=@final
 	          data-locale="auto"></script>
 	<% end %>
 </div>

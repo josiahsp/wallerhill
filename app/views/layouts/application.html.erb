@@ -10,6 +10,16 @@
 <body>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+<div id="view_cart"><%= link_to "View Cart", new_charge_path %></div>
+<div id="account_buttons">
+	<% if current_user %>
+		<%= link_to "Edit Account", edit_user_registration_path(current_user) %><br />
+		<%= link_to "Sign Out", destroy_user_session_path, :method => :delete  %>
+	<% else %>
+		<%= link_to "Sign In", new_user_session_path %><br />
+		<%= link_to "Create Account", new_user_registration_path %>
+	<% end %>
+</div>
 <%= yield %>
 
 </body>

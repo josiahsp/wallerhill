@@ -2,12 +2,12 @@
 
 <div id="index_title">
 	<h2 style="display: inline-block; margin-bottom: 0px;">Admin</h2><br />
-	<i>Logged in as <%= current_user.email %><br /><%= link_to "Edit Account", edit_user_registration_path(current_user) %> &nbsp;| &nbsp;<%= link_to "Logout", destroy_user_session_path, :method => :delete %></i>
+	<i>Hello, <%= current_user.fname %><br /><%= link_to "Edit Account", edit_user_registration_path(current_user) %> &nbsp;| &nbsp;<%= link_to "Logout", destroy_user_session_path, :method => :delete %></i>
 </div>
 
 	<!-------------- Authors/Artists -------------!>
 			<div class="admin_main">
-				<h2>Authors/Artists</h2>
+				<h2>Authors/Artists <span style="font-size: .7em;">(<%= @composers.count %>)</span></h2>
 				<%= link_to "Add Author/Artist", new_composer_path %>
 				<ul class="admin_list">
 					<% @composers.each do |composer| %>
@@ -32,7 +32,7 @@
 
 	<!-------------- Books -------------!>
 			<div class="admin_main">
-				<h2>Books</h2>
+				<h2>Books <span style="font-size: .7em;">(<%= @books.count %>)</span></h2>
 				<%= link_to "Add Book", new_book_path %>
 				<ul class="admin_list">
 					<% @books.each do |book| %>
@@ -62,7 +62,7 @@
 	
 	<!-------------- Music -------------!>
 			<div class="admin_main">
-				<h2>Music</h2>
+				<h2>Music <span style="font-size: .7em;">(<%= @music.count %>)</span></h2>
 				<%= link_to "Add Album", new_music_path %>
 				<ul class="admin_list">
 					<% @music.each do |music| %>
@@ -72,6 +72,9 @@
 							</div>
 							<div class="admin_item_div">
 								<%= usd(music.price) %>
+							</div>
+							<div class="admin_item_div">
+								<%= music.stock %>
 							</div>
 							<div class="admin_edit_div">
 								<%= button_to "Tracks", admintracks_url(id: music.id), :class => "admin_toggle_button", method: :get %>
@@ -87,13 +90,50 @@
 				</ul>
 			</div>
 
+			
+	<!------------- Users -------------!>
+				<div class="admin_main">
+					<h2>Users <span style="font-size: .7em;">(<%= @users.count %>)</span></h2>
+					<%= link_to "Add User", new_user_registration_path %>
+					<ul class="admin_list">
+						<% @users.each do |user| %>
+							<li>
+								<div class="admin_item_div admin_item_title">
+									<%= user.lname + ", " + user.fname%>
+								</div>
+								<div class="admin_item_div">
+									<%= user.city + ", " + user.state %>
+								</div>
+								<div class="admin_item_div">
+									<%= user.email %>
+								</div>
+								<div class="admin_item_div">
+									<%= user.phone %>
+								</div>
+								<div class="admin_edit_div">
+									<%= button_to "Edit", edit_user_registration_path(user), :class => "admin_toggle_button", method: :get %>
+								</div>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+				
+				
 	<!------------- Admin -------------!>
 			<div class="admin_main">
-				<h2>Admin <span style="font-size: .7em;">(<%= @users.count %>)</span></h2>
+				<h2>Administrators <span style="font-size: .7em;">(<%= @admin.count %>)</span></h2>
 				<ul class="admin_list">
-					<% @users.each do |user| %>
+					<% @admin.each do |admin| %>
 						<li>
-							<%= user.email %>
+							<div class="admin_item_div admin_item_title">
+								<%= admin.fname + " " + admin.lname%>
+							</div>
+							<div class="admin_item_div">
+								<%= admin.email %>
+							</div>
+							<div class="admin_edit_div">
+								<%= button_to "Edit", edit_user_registration_path(admin), :class => "admin_toggle_button", method: :get %>
+							</div>
 						</li>
 					<% end %>
 				</ul>
