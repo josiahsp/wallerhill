@@ -1,0 +1,19 @@
+<%= render "layouts/nav" %>
+
+<table id="index_title">
+	<tr><td>
+		<h2 style="display: inline-block; margin-bottom: 0px;">My Account</h2><br />
+		<i>Hello, <%= current_user.fname %><br />
+		<%= link_to "Logout", destroy_user_session_path, :method => :delete %></i>
+	</td></tr>
+</table>
+
+<div id="main">
+	<h2>Account</h2>
+	<ul>
+		<li>- <%= link_to "Edit Account", edit_user_registration_path(current_user) %></li>
+		<li>- <%= link_to "View Address Book", addresses_path %></li>
+		<li>- <%= link_to "View Orders", user_orders_path %></li>
+	</ul>
+</div>
+	

@@ -2,5 +2,6 @@
 
 <div id="main">
 	<h2>Success!</h2>
-	Thank you for your purchase! Your card has been charged $5. You should receive a confirmation email at the email address you provided.
+	Thank you for your purchase! Your order has been processed. A confirmation email will be sent to <%= current_user.email %>. You can view this order and your previous purchases in your account profile.<br /><br />
+	<%= link_to "Account Profile", user_profile_path(current_user.id) %>
 </div>

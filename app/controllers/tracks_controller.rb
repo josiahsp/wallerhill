@@ -27,25 +27,23 @@ class TracksController < ApplicationController
   def create
     @track = Track.new(track_params)
 
-    respond_to do |format|
-      if @track.save
-        format.html { redirect_to admin_path, notice: 'Track was successfully created.' }
-        format.json { render :show, status: :created, location: @track }
-      else
-        format.html { render :new }
-        format.json { render json: @track.errors, status: :unprocessable_entity }
-      end
+    if @track.save
+        flash[:success] = 'Track was successfully created.'
+        redirect_to admin_tracks_path(@track.music_id)
+    else
+        flash[:error] = @track.errors
+        render :new
     end
   end
 
   def update
-      if @track.update(track_params)
-		flash[:success] = "Track updated"
-        redirect_to admintracks_url(id: @track.music.id), notice: 'Track was successfully updated.'
-	  else
-		flash[:error] = @track.errors
+    if @track.update(track_params)
+        flash[:success] = "Track updated"
+        redirect_to admin_tracks_path(@track.music.id), notice: 'Track was successfully updated.'
+	else
+	    flash[:error] = @track.errors
 		render :edit
-	  end
+	end
   end
 
   # DELETE /tracks/1
@@ -66,6 +64,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:title, :length, :artist, :number, :isrc, :music_id, :ccli, :authors, :price)
+        params.require(:track).permit(:title, :length, :artist, :number, :isrc, :music_id, :ccli, :authors, :price)
     end
 end

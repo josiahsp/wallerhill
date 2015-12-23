@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215030209) do
+ActiveRecord::Schema.define(version: 20151222012637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "company"
+  end
 
   create_table "books", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -46,8 +61,14 @@ ActiveRecord::Schema.define(version: 20151215030209) do
     t.string   "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "address_id"
+    t.integer  "finaltotal"
+    t.datetime "placed"
+    t.datetime "shipped"
+    t.integer  "admin"
   end
 
+  add_index "carts", ["address_id"], name: "index_carts_on_address_id", using: :btree
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "composers", force: :cascade do |t|
@@ -124,16 +145,11 @@ ActiveRecord::Schema.define(version: 20151215030209) do
     t.string   "fname"
     t.string   "lname"
     t.string   "company"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "zip"
-    t.string   "phone"
-    t.string   "state"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "carts", "addresses"
   add_foreign_key "carts", "users"
 end

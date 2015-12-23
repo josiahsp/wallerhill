@@ -65,5 +65,18 @@ module ApplicationHelper
 			
 		return "$" + number_with_precision(dollars, :precision => 2).to_s
 	end
+	
+	def identify_product(identifier)
+		identifier = identifier.to_s
+		if identifier.length == 13
+			@product = Book.where(:isbn => identifier).first
+		else
+			@product = Music.where(:barcode => identifier).first
+		end
+	end
+	
+	def identify_address(id)
+		@address = Address.where(:id => id).first
+	end
 
 end

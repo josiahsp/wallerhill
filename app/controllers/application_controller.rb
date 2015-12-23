@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 	    @cart = Cart.find(session[:cart_id])
 	    rescue ActiveRecord::RecordNotFound
 	         @cart = Cart.create
+			 @cart.update_attribute("status", "open")
 	         session[:cart_id] = @cart.id
 	end
 

@@ -1,0 +1,47 @@
+<%= form_for(@address) do |f| %>
+  <ul>
+  <% @address.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+  <% if current_user.admin %>
+    <p class="form_liner checkout">
+      <%= f.label :user, "User" %>
+      <%= f.text_field :user_id, :value => current_user.id %>
+    </p>
+  <% else %>
+    <%= f.hidden_field :user_id, :value => current_user %>
+  <% end %>
+  <p class="form_liner checkout">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+    
+    <%= f.label :company, "Company" %>
+    <%= f.text_field :company %>
+  </p>
+  <p class="form_liner checkout">
+    <%= f.label :address1, "Address" %>
+    <%= f.text_field :address1 %>
+    
+    <%= f.label :address2, "Address 2" %>
+    <%= f.text_field :address2 %>
+  </p>
+  
+  <p class="form_liner checkout">
+    <%= f.label :city %>
+    <%= f.text_field :city, :style => 'width: 445px;' %>
+
+    <%= f.label :state %>
+    <%= f.select :state, options_for_select(us_states, @address.state) %>
+  </p>
+  
+  <p class="form_liner checkout">
+    <%= f.label :zip %>
+    <%= f.text_field :zip, :maxlength => 5 %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, :maxlength => 14, :placeholder => "999-999-9999" %>
+  </p>  <p class="form_liner">
+    <%= f.submit(:class => "submit") %>
+  </p>
+<% end %>

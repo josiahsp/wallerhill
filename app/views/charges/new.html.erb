@@ -1,14 +1,15 @@
 <%= render "layouts/nav" %>
+<% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
 
 <div id="main">
 	<h2>Cart</h2>
-
-	    <% if flash[:error].present? %>
-	      <div id="error_explanation">
-	        <p><%= flash[:error] %></p>
-	      </div>
-	    <% end %>
-	
+	<% if !@items.first %>
+		You've not added any items to Your cart
+	<% else %>
 		<table id="checkout_products">
 			<tr>
 				<th>Item</th>
@@ -73,13 +74,93 @@
 			</tr>	
 		</table>
 
-	
-	<%= form_tag charges_path do %>
+	<% if !current_user.present? %>
+		<%= form_for(@newuser, url: charges_path) do |f| %>
+		<h2>Create Account</h2>
+			<p class="form_liner checkout">
+				<%= f.label :first_name %>
+				<%= f.text_field :fname %>
 
-	  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-	          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-	          data-description="Waller-Hill Publishing"
-	          data-amount=@final
-	          data-locale="auto"></script>
+				<%= f.label :last_name %>
+				<%= f.text_field :lname %>
+			</p>
+
+		 	<p class="form_liner checkout">
+				<%= f.label :company %>
+				<%= f.text_field :company %>
+				
+		    	<%= f.label :email %>
+			    <%= f.email_field :email, autofocus: true %>
+			</p>
+			
+			<p class="form_liner checkout">
+
+				<%= f.label :password %>
+		    	<%= f.password_field :password, autocomplete: "off" %>
+
+				<%= f.label :password_confirmation %>
+		    	<%= f.password_field :password_confirmation, autocomplete: "off" %>
+			</p>
+		
+		<hr />
+		<h2>Shipping Address</h2>
+			<%= fields_for @newaddress do |a| %>
+			<p class="form_liner checkout">
+				<%= a.label :name, "Name" %>
+				<%= a.text_field :name %>
+				
+				<%= a.label :company, "Company" %>
+				<%= a.text_field :company %>
+			</p>
+			<p class="form_liner checkout">
+				<%= a.label :address1, "Address" %>
+				<%= a.text_field :address1 %>
+				
+				<%= a.label :address2, "Address 2" %>
+				<%= a.text_field :address2 %>
+			</p>
+			
+			<p class="form_liner checkout">
+				<%= a.label :city %>
+				<%= a.text_field :city, :style => 'width: 445px;' %>
+
+				<%= a.label :state %>
+				<%= a.select :state, options_for_select(us_states) %>
+			</p>
+			
+			<p class="form_liner checkout">
+				<%= a.label :zip %>
+				<%= a.text_field :zip, :maxlength => 5 %>
+
+				<%= a.label :phone %>
+				<%= a.text_field :phone, :maxlength => 14, :placeholder => "999-999-9999" %>
+			</p>
+		<% end %>
+
+
+		  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+		          data-description="Waller-Hill Publishing"
+	    	      data-amount=<%= @final %>
+	        	  data-locale="auto"></script>
+		<% end %>
+	<% else %>
+		<%= form_tag charges_path do %>
+		
+			<h2>Ship To</h2>
+				<%= fields_for @cart do |c| %>
+					<%= c.select :address_id, options_for_select(@user_addresses.all.map{|a| [a.array.join(", "), a.id]}) %><br /><br />
+				<% end %>
+				<%= link_to "Add address", new_address_path, :style => "opacity: .75;" %><br /><br />
+			
+			
+
+			<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+		          data-description="Waller-Hill Publishing"
+	    	      data-amount=<%= @final %>
+	        	  data-locale="auto"></script>
+		<% end %>
+	<% end %>
 	<% end %>
 </div>

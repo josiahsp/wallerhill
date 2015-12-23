@@ -324,6 +324,7 @@ ul {
 	width: 400px;
 	padding: 20px;
 	background-color: rgba(0,0,0,.7);
+	vertical-align: top;
 }
 
 #index_ul li h2 {
@@ -595,4 +596,76 @@ hr {
 
 .cart_sub_title {
 	color: rgba(255,255,255,.7);
+}
+
+.checkout input {
+	width: 300px;
+}
+
+.checkout select {
+	height: 40px;
+}
+
+.place_order_button {
+	opacity: 100%;
+	display: inline-block;
+	margin: auto;
+	margin-top: 30px;
+	width: 80%;
+	background-color: red;
+}
+
+.inline_block {
+	display: inline-block;
+}
+
+.address_link {
+	color: rgba(170,0,0,.6);
+	transition: all 1s;
+	-webkit-transition: all 1s;
+	opacity: .5;
+}
+
+.address_link:hover {
+	color: rgba(200,0,0,1);
+	opacity: 1;
+}
+
+.address_index_show {
+	display: inline-block;
+}
+
+.index_address_details {
+	display: inline-block;
+	width: 210px;
+	vertical-align: top;
+}
+
+.index_address_title {
+	display: inline-block;
+	font-size: 1.2em;
+	font-weight: 700;
+	width: 200px;
+}
+
+.white-background {
+	background-color: rgba(255,255,255,.2);
+}
+
+.initial-width {
+	width: initial;
+}
+
+.flash {
+	position: fixed;
+	top: 0px;
+	width: 98%;
+	padding-left: 1%;
+	padding-right: 1%;
+	background-color: red;
+}
+
+.order_show_specifics {
+	font-size: 1.2em;
+	margin-bottom: 20px;
 }

@@ -37,36 +37,6 @@
 			<%= f.label :company %>
 			<%= f.text_field :company %>
 		</p>
-		
-		<p class="form_liner">
-			<%= f.label :address1, "Address" %>
-			<%= f.text_field :address1 %>
-		</p>
-
-		<p class="form_liner">
-			<%= f.label :address2, "Address" %>
-			<%= f.text_field :address2 %>
-		</p>
-		
-		<p class="form_liner">
-			<%= f.label :city %>
-			<%= f.text_field :city %>
-		</p>
-		
-		<p class="form_liner">
-			<%= f.label :state %>
-			<%= f.select :state, options_for_select(us_states, @user.state) %>
-		</p>
-		
-		<p class="form_liner">
-			<%= f.label :zip %>
-			<%= f.text_field :zip, :maxlength => 5 %>
-		</p>
-		
-		<p class="form_liner">
-			<%= f.label :phone %>
-			<%= f.text_field :phone, :maxlength => 14, :placeholder => "9-999-999-9999" %>
-		</p>
 
 	  <p class="form_liner">
 	    <%= f.submit "Sign up" %>

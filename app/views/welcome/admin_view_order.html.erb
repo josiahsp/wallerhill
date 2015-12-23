@@ -1,0 +1,97 @@
+<%= render "layouts/nav" %>
+
+<div id="index_title">
+	<h2 style="display: inline-block; margin-bottom: 0px;">Orders</h2>
+</div>
+
+	<!-------------- Orders -------------!>
+		<div id="main">
+			<div class="order_show_specifics">
+				Order #<%= @order.id %><br />
+				Status: <%= @order.status.titleize %><br />
+				<% if @order.placed %>
+					Placed: <%= @order.placed.strftime("%a, %b %d, %y - %l:%M %p") %><br />
+				<% end %>
+				<% if @order.shipped %>
+					Shipped: <%= @order.shipped.strftime("%a, %b %d, %y - %l:%M %p") %>
+				<% end %>
+				
+			</div>
+			<table id="checkout_products">
+				<tr>
+					<th>Item</th>
+					<th>Price Per Unit</th>
+					<th>Quantity</th>
+					<th>Price</th>
+				</tr>
+				<% cartitems(@order).each do |item| %>
+					<tr>
+						<% identify_product(item.product_id) %>
+						<td class="title_col">&nbsp;&nbsp;<%= @product.title + " by " + @product.composers.map {|c| c.full_name}.join(", ") %></td>
+						<td><%= usd(@product.price) %></td>
+						<td style="height: 30px;"><%= item.quantity %></td>
+						<td><%= usd(item.quantity.to_int * @product.price.to_int) %></td>
+					</tr>
+				<% end %>
+				<% carttotal(@order) %>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="cart_total_title">Cart Total</td>
+					<td><%= usd(@carttotal) %></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="cart_total_title cart_sub_title">Tax</td>
+					<td class="cart_sub_title"><%= usd(@tax) %></td>
+					<td></td>
+					<td></td>
+				</tr>	
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="cart_total_title">Subtotal</td>
+					<td><%= usd(@subtotal) %></td>
+					<td></td>
+					<td></td>
+				</tr>	
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="cart_total_title cart_sub_title">Shipping</td>
+					<td class="cart_sub_title"><%= usd(@shipping) %></td>
+					<td></td>
+					<td></td>
+				</tr>	
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="cart_total_title">Total</td>
+					<td><%= usd(@final) %></td>
+					<td></td>
+					<td></td>
+				</tr>	
+
+				
+			</table>
+			<% if @order.address_id %>
+			Ship To:<br /><br />
+			<% identify_address(@order.address_id) %>
+			<div class="index_address_title"><%= @address.name %></div><br/ >
+			<% if @address.company.present? %>
+					<%= @address.company %><br />
+				<% end %>
+				<%= @address.address1 %><br />
+				<% if @address.address2.present? %>
+					<%= @address.address2 %><br />
+				<% end %>
+				<%= @address.city %>, <%= @address.state %> <%= @address.zip %><br />
+				<% if @address.phone.present? %>
+					<%= @address.phone %><br />
+				<% end %>
+			<% end %>
+				
+		</div>

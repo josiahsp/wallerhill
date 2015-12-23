@@ -5,15 +5,21 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	<script type="text/javascript">
+	  // This identifies your website in the createToken call below
+	  Stripe.setPublishableKey('pk_test_lNKShYpYH1BnQ5it2ap2iGBq');
+	  // ...
+	</script>
 	<%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="notice"><%= notice %></div>
+<div class="alert"><%= alert %></div>
 <div id="view_cart"><%= link_to "View Cart", new_charge_path %></div>
 <div id="account_buttons">
 	<% if current_user %>
-		<%= link_to "Edit Account", edit_user_registration_path(current_user) %><br />
+		<%= link_to "My Account", user_profile_path(current_user.id) %><br />
 		<%= link_to "Sign Out", destroy_user_session_path, :method => :delete  %>
 	<% else %>
 		<%= link_to "Sign In", new_user_session_path %><br />

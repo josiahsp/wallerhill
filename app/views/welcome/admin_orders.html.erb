@@ -1,0 +1,94 @@
+<%= render "layouts/nav" %>
+
+<table id="index_title">
+	<tr><td>
+		<h2 style="display: inline-block;">Orders</h2><br />
+	</td><td>
+		<%= link_to "Admin Dashboard", admin_path, :style => 'font-size: .9em;' %>
+	</td></tr>
+</table>
+
+	<!-------------- Pending Orders -------------!>
+			<div class="admin_main">
+				<h2>New Orders <span style="font-size: .7em;">(<%= @orders.count %>)</span></h2>
+				<ul class="admin_list">
+					<% @orders.each do |order| %>
+						<li>
+							<div class="admin_item_div admin_item_title" %>
+								Order #<%= order.id %>
+							</div>
+							<div class="admin_item_div">
+								<%= order.placed.strftime("%a, %b %d, %Y") %>
+							</div>
+							<div class="admin_item_div">
+								<% identify_address(order.address_id) %>
+								<%= @address.city + ", " + @address.state %>
+							</div>
+							<div class="admin_item_div">
+								<%= item_count(order) %> item(s)
+							</div>
+							<div class="admin_edit_div">
+								<%= button_to "View Details", admin_view_order_path(order), :class => "admin_toggle_button", method: :get %>
+							</div>
+							<div class="admin_edit_div">
+								<%= button_to "Change status to 'Shipped'", ship_order_path(order), :class => "admin_show_button", method: :get %>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			
+			
+<!-------------- Shipped Orders -------------!>
+			<div class="admin_main">
+				<h2>Filled Orders <span style="font-size: .7em;">(<%= @filled.count %>)</span></h2>
+				<ul class="admin_list">
+					<% @filled.each do |order| %>
+						<li>
+							<div class="admin_item_div admin_item_title" %>
+								Order #<%= order.id %>
+							</div>
+							<div class="admin_item_div">
+								<%= order.shipped.strftime("%a, %b %d, %Y") %>
+							</div>
+							<div class="admin_item_div">
+								<%= link_to admin_initials(order), edit_user_registration_path(order.admin) %>
+							</div>
+							<div class="admin_item_div">
+								<% identify_address(order.address_id) %>
+								<%= @address.city + ", " + @address.state %>
+							</div>
+							<div class="admin_item_div">
+								<%= item_count(order) %> item(s)
+							</div>
+							<div class="admin_edit_div">
+								<%= button_to "View Details", admin_view_order_path(order), :class => "admin_toggle_button", method: :get %>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			
+<!-------------- Open Carts -------------!>
+			<div class="admin_main">
+				<h2>Open Carts <span style="font-size: .7em;">(<%= @open.count %>)</span></h2>
+				<ul class="admin_list">
+					<% @open.each do |order| %>
+						<li>
+							<div class="admin_item_div admin_item_title" %>
+								Order #<%= order.id %>
+							</div>
+							<div class="admin_item_div">
+								<%= item_count(order) %> item(s)
+							</div>
+							<% carttotal(order) %>
+							<div class="admin_item_div">
+								<%= usd(@carttotal) %>
+							</div>
+							<div class="admin_edit_div">
+								<%= button_to "View Details", admin_view_order_path(order), :class => "admin_toggle_button", method: :get %>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+			</div>
