@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Waller-Hill Publishing</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body>
+		<div style="border: 10px solid rgba(0,0,0,.2); background-color: rgba(155,142,160,.05); padding: 20px;"><!-- wrapper -->
+			<div style="width: 100%; padding: 10px; text-align: center;"><!-- topbar -->
+				<%= link_to image_tag("logo.png", :style => 'width: 90px;'), root_path %><!-- logo -->
+			</div>
+			<%= yield %>
+		</div>
+</body>
+</html>

@@ -35,10 +35,6 @@ class ChargesController < ApplicationController
 		else
 			@cart.update_attribute("address_id", params[:cart][:address_id])
 		end
-		
-		@cart.update_attribute("status", "processed")
-		@cart.update_attribute("user_id", current_user.id)
-		@cart.update_attribute("placed", DateTime.now)
 
 		@items = CartItem.where(:cart_id => @cart.id).order(:created_at)
 	
@@ -51,17 +47,25 @@ class ChargesController < ApplicationController
 	    :source  => params[:stripeToken]
 	  )
 
-	  charge = Stripe::Charge.create(
+	 if charge = Stripe::Charge.create(
 	    :customer    => customer.id,
 	    :amount      => total,
 	    :description => 'Waller Hill Publishing',
 	    :currency    => 'usd'
 	  )
+		@cart.update_attribute("status", "processed")
+		@cart.update_attribute("user_id", current_user.id)
+		@cart.update_attribute("placed", DateTime.now)
+		
+		OrderMailer.receipt(current_user, @cart, @items).deliver
+		OrderMailer.orderNotification(current_user, @cart, @items).deliver
+	else
+		redirect_to new_charge_path
+		flash[:error] = "An unknown error occured. Please try again. If the problem persists, please notify wallerhillpublishing@gmail.com"
+	end
 
 	@cart = Cart.create
 	         session[:cart_id] = @cart.id
-	
-	@total = total
 
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message

@@ -1,0 +1,59 @@
+<div style="width: 100%; padding: 3px; margin-bottom: 10px; background-color: rgb(155,142,160); color: #ffffff;">
+	<h2>Order Confirmation</h2>
+</div>
+<span style="color: rgb(155,142,160);">
+Hello, <%= @user.fname %>!<br /><br />
+
+Thank you for your order from Waller-Hill.com. If you have any questions about your order, please contact us at wallerhillpublishing@gmail.com or through our website. Your order confirmation is below. Thank you again for your business!
+</span>
+<br /><br /><hr /><br />
+Order #<%= @cart.id %>
+<h2>Items</h2>
+		<table id="checkout_products">
+			<tr>
+				<th>Item</th>
+				<th>Price Per Unit</th>
+				<th>Quantity</th>
+				<th>Price</th>
+			</tr>
+			<% @items.each do |item| %>
+				<tr>
+					<% identify_product(item.product_id) %>
+					<td class="title_col">&nbsp;&nbsp;<%= @product.title + " by " + @product.composers.map {|c| c.full_name}.join(", ") %></td>
+					<td><%= usd(@product.price) %></td>
+					<td><%= item.quantity %></td>
+					<td><%= usd(item.quantity.to_int * @product.price.to_int) %></td>
+				</tr>
+			<% end %>
+			<% carttotal(@cart) %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title">Cart Total</td>
+				<td><%= usd(@carttotal) %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title cart_sub_title">Tax</td>
+				<td class="cart_sub_title"><%= usd(@tax) %></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title">Subtotal</td>
+				<td><%= usd(@subtotal) %></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title cart_sub_title">Shipping</td>
+				<td class="cart_sub_title"><%= usd(@shipping) %></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="cart_total_title">Total</td>
+				<td><%= usd(@final) %></td>
+			</tr>	
+		</table>

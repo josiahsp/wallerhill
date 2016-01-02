@@ -1,0 +1,13 @@
+<div style="width: 100%; padding: 3px; margin-bottom: 10px; background-color: rgb(155,142,160); color: #ffffff;">
+	<h2>New Order Notification</h2>
+</div>
+You have a new order waiting to be filled at Waller-Hill.com<br />
+<b>Order</b> #<%= @cart.id %><br />
+<b>Date:</b> <%= Date.today.strftime("%a, %b %e, %Y")%><br /><br />
+<b>Name:</b> <%= @user.fname + " " + @user.lname %><br />
+<b>Email:</b> <%= @user.email %><br /><br />
+<b>Items:</b> (<i><%= @items.count %></i>)<br />
+	<% @items.each do |item| %>
+		<% identify_product(item.product_id) %>
+		<%= item.quantity %> - <i><%= @product.title %></i><br />
+	<% end %>
